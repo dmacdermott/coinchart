@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "yargs": "^17.0.1"
+  },
+  "name": "coinchart",
+  "description": "Display crypto candlestick charts in terminal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin" : {
+    "coinchart": "./index.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmacdermott/coinchart.git"
+  },
+  "keywords": [
+    "candlestick",
+    "chart",
+    "cryptocurrency",
+    "graph",
+    "asciichart"
+  ],
+  "author": "Damian Macdermott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmacdermott/coinchart/issues"
+  },
+  "homepage": "https://github.com/dmacdermott/coinchart#readme"
+}
