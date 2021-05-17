@@ -1,22 +1,39 @@
 #!/usr/bin/env node
-const yargs = require("yargs").argv._;
 const axios = require("axios");
+const argv = require("yargs/yargs")(process.argv.slice(2))
+	.default({
+		i: "1h",
+		l: 50,
+		p: "USDT",
+	})
+	.help("h")
+	.alias("h", "help")
+	.alias("i", "interval")
+	.describe("i", "Interval eg. 15m, 4h, 1d")
+	.alias("p", "pair")
+	.describe("p", "Coin pairing eg. BTC, BNB, ETH")
+	.alias("l", "limit")
+	.describe("l", "Number of candlesticks").argv;
 
-const [coin] = yargs;
+let [coin] = argv._.length ? argv._ : ["BTC"];
+coin = coin.toUpperCase();
+const interval = argv.i;
+const limit = argv.l;
+const pair = argv.p.toUpperCase();
+
 let coinData;
-const getData = (coin = "BTC", interval = "1h", limit = "50") => {
+const getData = () => {
 	axios
-		.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${coin.toUpperCase()}USDT`)
-		.then((prices) => (coinData = prices.data));
+		.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${coin}${pair}`)
+		.then((prices) => (coinData = prices.data))
+		.catch((err) => console.log("Unable to fetch data"));
 
-	const data = axios
+	axios
 		.get(
-			`https://api.binance.com/api/v3/klines?symbol=${coin.toUpperCase()}USDT&interval=${interval}&limit=${limit}`
+			`https://api.binance.com/api/v3/klines?symbol=${coin}${pair}&interval=${interval}&limit=${limit}`
 		)
-		.then((prices) => {
-			const data = prices.data;
-			plot(data);
-		});
+		.then((prices) => plot(prices.data))
+		.catch((err) => console.log("Error fetching data :( Please try again!"));
 };
 
 const plot = (series) => {
@@ -111,9 +128,7 @@ const plot = (series) => {
 	console.log(result.map((x) => x.join(" ")).join("\n"));
 
 	console.log(
-		`\n The current price for ${coin.toUpperCase()} is ${coinData.lastPrice} (${
-			coinData.priceChangePercent
-		}%)`
+		`\n The current price for ${coin} is ${coinData.lastPrice} (${coinData.priceChangePercent}%)`
 	);
 };
-getData(coin);
+getData();

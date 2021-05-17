@@ -4,7 +4,7 @@
     "yargs": "^17.0.1"
   },
   "name": "coinchart",
-  "description": "Display crypto candlestick charts in terminal",
+  "description": "Display cryptocurrency candlestick charts in your terminal",
   "version": "1.0.0",
   "main": "index.js",
   "bin" : {
@@ -23,7 +23,7 @@
     "chart",
     "cryptocurrency",
     "graph",
-    "asciichart"
+    "bitcoin"
   ],
   "author": "Damian Macdermott",
   "license": "MIT",
