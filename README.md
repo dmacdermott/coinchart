@@ -10,7 +10,7 @@
 npm i coinchart
 ```
 
-💁‍♂️ To make the most of this package, I recommend installing it globablly.
+💁‍♂️  To make the most of this package, I recommend installing it globablly.
 
 ```bash
 npm i -g coinchart
@@ -27,6 +27,10 @@ Options:
   -r, --rows      Graph height in rows                             [default: 25]
   -v, --version   Show version number
 ```
+
+# 🏄‍♂️ Contribute 
+
+Feel free to contribute to make it even cooler! 
 
 # Acknowledgements
 
