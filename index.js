@@ -5,7 +5,9 @@ const argv = require("yargs/yargs")(process.argv.slice(2))
 		i: "1h",
 		l: 50,
 		p: "USDT",
+		r: 25,
 	})
+	.alias("v", "version")
 	.help("h")
 	.alias("h", "help")
 	.alias("i", "interval")
@@ -13,27 +15,29 @@ const argv = require("yargs/yargs")(process.argv.slice(2))
 	.alias("p", "pair")
 	.describe("p", "Coin pairing eg. BTC, BNB, ETH")
 	.alias("l", "limit")
-	.describe("l", "Number of candlesticks").argv;
+	.describe("l", "Number of candlesticks")
+	.alias("r", "rows")
+	.describe("r", "Graph height in rows").argv;
 
 let [coin] = argv._.length ? argv._ : ["BTC"];
 coin = coin.toUpperCase();
 const interval = argv.i;
 const limit = argv.l;
 const pair = argv.p.toUpperCase();
+const graphHeight = argv.r;
 
 let coinData;
 const getData = () => {
-	axios
-		.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${coin}${pair}`)
-		.then((prices) => (coinData = prices.data))
-		.catch((err) => console.log("Unable to fetch data"));
-
-	axios
-		.get(
-			`https://api.binance.com/api/v3/klines?symbol=${coin}${pair}&interval=${interval}&limit=${limit}`
-		)
-		.then((prices) => plot(prices.data))
-		.catch((err) => console.log("Error fetching data :( Please try again!"));
+	const data = axios.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${coin}${pair}`);
+	const graphData = axios.get(
+		`https://api.binance.com/api/v3/klines?symbol=${coin}${pair}&interval=${interval}&limit=${limit}`
+	);
+	Promise.all([data, graphData])
+		.then((res) => {
+			coinData = res[0].data;
+			plot(res[1].data);
+		})
+		.catch(() => console.log("Error fetching data :( Please try again!"));
 };
 
 const plot = (series) => {
@@ -58,7 +62,7 @@ const plot = (series) => {
 	});
 
 	let range = Math.abs(max - min);
-	let height = 25;
+	let height = graphHeight;
 	let ratio = range !== 0 ? height / range : 1;
 
 	let min2 = Math.round(min * ratio);
@@ -126,9 +130,8 @@ const plot = (series) => {
 		result[rows - yOpen][col] = "█";
 	}
 	console.log(result.map((x) => x.join(" ")).join("\n"));
-
 	console.log(
-		`\n The current price for ${coin} is ${coinData.lastPrice} (${coinData.priceChangePercent}%)`
+		`\n The current price for ${coin} is ${coinData.lastPrice} ${pair} (${coinData.priceChangePercent}%)`
 	);
 };
 getData();
