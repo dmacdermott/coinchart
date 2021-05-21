@@ -18,19 +18,21 @@ npm i -g coinchart
 
 # 👨‍💻 Usage
 
-### Basic Usage
-
-```bash
-coinchart eth
-```
-
 ## Examples
+
+### Basic Usage
 
 ```bash
 coinchart
 ```
 
 Returns the default ie. BTC/USDT 1h interval chart
+
+```bash
+coinchart eth
+```
+
+Returns ETH/USDT 1h interval chart
 
 ```bash
 coinchart ada -i 1d
@@ -49,6 +51,10 @@ Options:
   -r, --rows      Graph height in rows                             [default: 25]
   -v, --version   Show version number
 ```
+
+# 🏄‍♂️ Contribute
+
+Feel free to contribute to make it even cooler!
 
 # Acknowledgements
 
