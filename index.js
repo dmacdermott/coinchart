@@ -25,8 +25,13 @@ const interval = argv.i;
 const limit = argv.l;
 const pair = argv.p.toUpperCase();
 const graphHeight = argv.r;
+const green = "\u001b[32;1m";
+const red = "\u001b[31;1m";
+const stopColor = "\u001b[0m";
 
 let coinData;
+let color;
+
 const getData = () => {
 	const data = axios.get(`https://api.binance.com/api/v3/ticker/24hr?symbol=${coin}${pair}`);
 	const graphData = axios.get(
@@ -35,6 +40,7 @@ const getData = () => {
 	Promise.all([data, graphData])
 		.then((res) => {
 			coinData = res[0].data;
+			color = res[0].data.priceChangePercent >= 0 ? green : red;
 			plot(res[1].data);
 		})
 		.catch(() => console.log("Error fetching data :( Please try again!"));
@@ -104,17 +110,17 @@ const plot = (series) => {
 
 		if (yOpen <= yClose) {
 			for (let i = rows - yHigh; i < rows - yClose; ++i) {
-				result[i][col] = "|";
+				result[i][col] = `${green}|${stopColor}`;
 			}
 			for (let i = rows - yOpen; i < rows - yLow; i++) {
-				result[i][col] = "|";
+				result[i][col] = `${green}|${stopColor}`;
 			}
 		} else {
 			for (let i = rows - yOpen; i <= rows - yLow; ++i) {
-				result[i][col] = "|";
+				result[i][col] = `${red}|${stopColor}`;
 			}
 			for (let i = rows - yHigh; i <= rows - yClose; ++i) {
-				result[i][col] = "|";
+				result[i][col] = `${red}|${stopColor}`;
 			}
 		}
 
@@ -123,15 +129,17 @@ const plot = (series) => {
 		const high = Math.max(rows - yOpen, rows - yClose);
 
 		if (low !== high) {
-			for (let i = low; i < high; ++i) {
-				result[i][col] = "█";
+			for (let i = low; i <= high; ++i) {
+				result[i][col] = yOpen <= yClose ? `${green}█${stopColor}` : `${red}█${stopColor}`;
 			}
 		}
-		result[rows - yOpen][col] = "█";
+		result[rows - yOpen][col] =
+			yOpen <= yClose ? `${green}█${stopColor}` : `${red}█${stopColor}`;
 	}
 	console.log(result.map((x) => x.join(" ")).join("\n"));
+	console.log(`\n \u001b[1m\u001b[33;1m${coin}/${pair}\u001b[0m  ${interval} chart`);
 	console.log(
-		`\n The current price for ${coin} is ${coinData.lastPrice} ${pair} (${coinData.priceChangePercent}%)`
+		`\n The current price for ${coin} is \u001b[1m${color}${coinData.lastPrice} ${pair} (${coinData.priceChangePercent}%)`
 	);
 };
 getData();

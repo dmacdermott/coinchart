@@ -2,7 +2,7 @@
 
 ### Display crypto candlestick charts in terminal
 
-![screenshot](https://user-images.githubusercontent.com/8098110/118658532-71f44000-b827-11eb-8523-51bb61273fe4.jpg)
+![screenshot](https://user-images.githubusercontent.com/8098110/119164477-70c94a00-ba97-11eb-8962-25900ea5a83f.png)
 
 # 🛠 Installation
 
@@ -10,13 +10,35 @@
 npm i coinchart
 ```
 
-💁‍♂️ To make the most of this package, I recommend installing it globablly.
+💁‍♂️ To make the most of this package, I recommend installing it globally.
 
 ```bash
 npm i -g coinchart
 ```
 
 # 👨‍💻 Usage
+
+### Basic Usage
+
+```bash
+coinchart eth
+```
+
+## Examples
+
+```bash
+coinchart
+```
+
+Returns the default ie. BTC/USDT 1h interval chart
+
+```bash
+coinchart ada -i 1d
+```
+
+Returns ADA/USDT 1d interval chart
+
+## Options
 
 ```bash
 Options:

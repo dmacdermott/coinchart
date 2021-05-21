@@ -5,7 +5,7 @@
   },
   "name": "coinchart",
   "description": "Display cryptocurrency candlestick charts in your terminal",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "bin": {
     "coinchart": "./index.js"
