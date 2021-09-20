@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "axios": "^0.21.1",
-    "yargs": "^17.0.1"
+    "axios": "^0.21.4",
+    "yargs": "^17.1.1"
   },
   "name": "coinchart",
   "description": "Display cryptocurrency candlestick charts in your terminal",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "bin": {
     "coinchart": "./index.js"
