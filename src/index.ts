@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { CoinResponse, GraphResponse } from "./types";
 
 const BASE_URL = "https://api.binance.com/api/v3";
