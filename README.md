@@ -7,12 +7,6 @@
 # 🛠 Installation
 
 ```bash
-npm i coinchart
-```
-
-💁‍♂️ To make the most of this package, I recommend installing it globally.
-
-```bash
 npm i -g coinchart
 ```
 
@@ -26,19 +20,19 @@ npm i -g coinchart
 coinchart
 ```
 
-Returns the default ie. BTC/USDT 1h interval chart
+Returns the default ie. BTC/USDT 1h interval chart.
 
 ```bash
 coinchart eth
 ```
 
-Returns ETH/USDT 1h interval chart
+Returns ETH/USDT 1h interval chart.
 
 ```bash
 coinchart ada -i 1d
 ```
 
-Returns ADA/USDT 1d interval chart
+Returns ADA/USDT 1d interval chart.
 
 ## Options
 
@@ -54,7 +48,7 @@ Options:
 
 # 🏄‍♂️ Contribute
 
-Feel free to contribute to make it even cooler!
+Feel free to contribute to make it even better!
 
 # Acknowledgements
 
