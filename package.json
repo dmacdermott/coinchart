@@ -13,9 +13,9 @@
       "require": "./dist/index.js"
     }
   },
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "bin": {
-    "coinchart": "src/index.js"
+    "coinchart": "./dist/index.js"
   },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
