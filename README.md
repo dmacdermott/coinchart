@@ -1,20 +1,18 @@
-# 💹 coinchart
+# coinchart
 
-### Display crypto candlestick charts in terminal
+#### Display cryptocurrency candlestick charts in your terminal.
 
-![screenshot](https://user-images.githubusercontent.com/8098110/119164477-70c94a00-ba97-11eb-8962-25900ea5a83f.png)
+![screenshot](https://user-images.githubusercontent.com/8098110/219873326-f8c39078-e1f5-4485-97fb-803dd2d1c4fd.png)
 
-# 🛠 Installation
+
+## Installation
 
 ```bash
 npm i -g coinchart
 ```
 
-# 👨‍💻 Usage
+## Examples 
 
-## Examples
-
-### Basic Usage
 
 ```bash
 coinchart
@@ -46,10 +44,10 @@ Options:
   -v, --version   Show version number
 ```
 
-# 🏄‍♂️ Contribute
+## Contribute
 
-Feel free to contribute to make it even better!
+Feel free to make a PR with any improvements or features.
 
-# Acknowledgements
+## Acknowledgements
 
 Thanks to [asciichart](https://www.npmjs.com/package/asciichart) for the inspiration.
