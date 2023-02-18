@@ -1,5 +1,11 @@
 # coinchart
 
+## 1.1.2
+
+### Patch Changes
+
+- 444bc51: Fix incorrect bin dir, update readme
+
 ## 1.1.1
 
 ### Patch Changes
