@@ -1,5 +1,11 @@
 # coinchart
 
+## 1.1.3
+
+### Patch Changes
+
+- Fix unnecessary files uploaded to npm
+
 ## 1.1.2
 
 ### Patch Changes
